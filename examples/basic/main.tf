@@ -17,7 +17,7 @@ module "vnet" {
 
 
 module "basic_public_lb" {
-  source              = "Azure/loadbalancer/azurerm"
+  source              = "github.com/SoftcatMS/azure-terraform-loadbalancer"
   resource_group_name = azurerm_resource_group.example.name
   name                = "lb-basic-public-example"
   pip_name            = "pip-lb-basic-public-example"

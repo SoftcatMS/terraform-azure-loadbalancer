@@ -17,7 +17,7 @@ module "vnet" {
 
 
 module "advanced_public_lb" {
-  source              = "Azure/loadbalancer/azurerm"
+  source              = "github.com/SoftcatMS/azure-terraform-loadbalancer"
   resource_group_name = azurerm_resource_group.example.name
   name                = "lb-advanced-public-example"
   pip_name            = "pip-lb-advanced-public-example"
@@ -40,7 +40,7 @@ module "advanced_public_lb" {
 
 
 module "advanced_private_lb" {
-  source                                 = "Azure/loadbalancer/azurerm"
+  source                                 = "github.com/SoftcatMS/azure-terraform-loadbalancer"
   resource_group_name                    = azurerm_resource_group.example.name
   name                                   = "lb-advanced-private-example"
   type                                   = "private"
