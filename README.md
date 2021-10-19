@@ -48,14 +48,6 @@ Azure
 - [Terraform Provider for Azure](https://github.com/hashicorp/terraform-provider-azurerm)
 - CLI Tool [az](https://docs.microsoft.com/en-us/cli/azure/)
 
-AWS  
-- [Terraform Provider for AWS](https://github.com/hashicorp/terraform-provider-aws)
-- CLI Tool [aws-cli](https://aws.amazon.com/cli/)
-
-GCP  
-- [Terraform Provider for GCP](https://github.com/hashicorp/terraform-provider-google)
-- [Terraform Provider for GCP Beta](https://github.com/terraform-providers/terraform-provider-google-beta)
-- CLI Tool [gcloud](https://cloud.google.com/sdk/gcloud/)
 
 ## Requirements
 
