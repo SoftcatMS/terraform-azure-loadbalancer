@@ -12,7 +12,12 @@ Based of original module: https://github.com/Azure/terraform-azurerm-loadbalance
 
 It supports creating:
 
-
+- Public IP
+- Load Balancer
+- Backend Address Pool
+- Nat Rule
+- Load Balancer Probe
+- Load Balancer Rule
 
 
 ## Usage Examples
