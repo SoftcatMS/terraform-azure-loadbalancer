@@ -14,14 +14,14 @@ jobs:
     name: Terraform CI
     runs-on: ubuntu-latest
     env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_MODULE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_MODULE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_MODULE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_MODULE_TENANT_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_MODULE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_MODULE_CLIENT_SECRET }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_MODULE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_MODULE_TENANT_ID }}
 
     steps:
       - name: Clone repo
@@ -38,39 +38,39 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
 
-      # #### Basic Tests
-      # - name: Terraform Init Basic
-      #   id: init_basic
-      #   run: | 
-      #     cd tests/basic
-      #     terraform init
+      #### Basic Tests
+      - name: Terraform Init Basic
+        id: init_basic
+        run: | 
+          cd tests/basic
+          terraform init
 
-      # - name: Terraform Plan Basic
-      #   id: plan_basic
-      #   run: | 
-      #     cd tests/basic
-      #     terraform plan
+      - name: Terraform Plan Basic
+        id: plan_basic
+        run: | 
+          cd tests/basic
+          terraform plan
           
-      # - name: Terraform Apply Basic
-      #   id: apply_basic
-      #   run: | 
-      #     cd tests/basic
-      #     terraform apply --auto-approve
+      - name: Terraform Apply Basic
+        id: apply_basic
+        run: | 
+          cd tests/basic
+          terraform apply --auto-approve
 
-      # - name: Inspec Scan Basic
-      #   id: inspec_basic
-      #   run: | 
-      #     inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
-      #   continue-on-error: false
+      - name: Inspec Scan Basic
+        id: inspec_basic
+        run: | 
+          inspec exec tests/basic/azure-inspec-tests --chef-license accept -t azure://
+        continue-on-error: false
 
-      # - name: Terraform Destroy Basic
-      #   id: destroy_basic
-      #   run: | 
-      #     cd tests/basic
-      #     terraform destroy --auto-approve
+      - name: Terraform Destroy Basic
+        id: destroy_basic
+        run: | 
+          cd tests/basic
+          terraform destroy --auto-approve
 
 
-      ### Advanced Tests
+      #### Advanced Tests
       - name: Terraform Init Advanced
         id: init_advanced
         run: | 
