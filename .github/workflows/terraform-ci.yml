@@ -27,9 +27,6 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@main
 
-      - name: HashiCorp - Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
-
       - name: add-softcat-deploy-key
         run: |
           mkdir ~/.ssh
@@ -40,6 +37,9 @@ jobs:
         uses: actionshub/chef-install@2.0.3
         with:
           version: '21.11.679'
+
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v1.2.1
 
       - name: Terraform fmt
         id: fmt

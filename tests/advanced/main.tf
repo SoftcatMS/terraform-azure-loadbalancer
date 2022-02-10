@@ -49,7 +49,7 @@ module "advanced_public_lb" {
 
 
 module "advanced_private_lb" {
-  source                                 = "Azure/loadbalancer/azurerm"
+  source                                 = "../../"
   resource_group_name                    = azurerm_resource_group.rg-lb-test-advanced.name
   name                                   = "lb-advanced-private-test"
   type                                   = "private"
