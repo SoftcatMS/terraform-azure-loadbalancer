@@ -29,9 +29,17 @@ jobs:
 
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
-        
+
+      - name: add-softcat-deploy-key
+        run: |
+          mkdir ~/.ssh
+          echo '${{ secrets.SOFTCAT_SSH_DEPLOY_KEY }}' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+                  
       - name: Install Inspec 
-        uses: actionshub/chef-install@1.1.0
+        uses: actionshub/chef-install@2.0.3
+        with:
+          version: '21.11.679'
 
       - name: Terraform fmt
         id: fmt

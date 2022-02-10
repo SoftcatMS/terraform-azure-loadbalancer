@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg-lb-test-advanced" {
 
 module "vnet" {
 
-  source              = "github.com/SoftcatMS/azure-terraform-vnet"
+  source              = "git@github.com:SoftcatMS/azure-terraform-vnet"
   vnet_name           = "vnet-lb-test-advanced"
   resource_group_name = azurerm_resource_group.rg-lb-test-advanced.name
   address_space       = ["10.3.0.0/16"]
@@ -22,7 +22,7 @@ module "vnet" {
 
 
 module "advanced_public_lb" {
-  source              = "Azure/loadbalancer/azurerm"
+  source              = "../../"
   resource_group_name = azurerm_resource_group.rg-lb-test-advanced.name
   name                = "lb-advanced-public-test"
   pip_name            = "pip-lb-advanced-public-test"
