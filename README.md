@@ -1,4 +1,4 @@
-# azure-terraform-loadbalancer
+# terraform-azure-loadbalancer
 
 A terraform module to provide load balancers in Azure with the following characteristics:
 
