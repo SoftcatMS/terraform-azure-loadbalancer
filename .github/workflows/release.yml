@@ -17,7 +17,7 @@ jobs:
     # To bump Patch version v1.1.1 use #patch in commit message
     - name: Bump version and push tag
       id: bump_version
-      uses: anothrNick/github-tag-action@1.36.0 # https://github.com/anothrNick/github-tag-action
+      uses: anothrNick/github-tag-action@ce4b5ffa38e072fa7a901e417253c438fcc2ccce # v1.36.0 https://github.com/anothrNick/github-tag-action
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true # Append version number with 'v'
@@ -25,7 +25,7 @@ jobs:
     # Return changelog between two git references
     - name: Generate changelog
       id: changelog
-      uses: metcalfc/changelog-generator@v1.0.0 # https://github.com/metcalfc/changelog-generator
+      uses: metcalfc/changelog-generator@e5306b306fa2e34f05258789e0e5c526c1bd4352 # v1.0.0 https://github.com/metcalfc/changelog-generator
       with:
         myToken: ${{ secrets.GITHUB_TOKEN }}
 

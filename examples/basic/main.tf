@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "example" {
 
 module "vnet" {
 
-  source              = "git@github.com:SoftcatMS/terraform-azure-vnet"
+  source              = "github.com/SoftcatMS/terraform-azure-vnet"
   vnet_name           = "vnet-lb-example-basic"
   resource_group_name = azurerm_resource_group.example.name
   address_space       = ["10.2.0.0/16"]
@@ -17,7 +17,7 @@ module "vnet" {
 
 
 module "basic_public_lb" {
-  source              = "git@github.com:SoftcatMS/terraform-azure-loadbalancer"
+  source              = "github.com/SoftcatMS/terraform-azure-loadbalancer"
   resource_group_name = azurerm_resource_group.example.name
   name                = "lb-basic-public-example"
   pip_name            = "pip-lb-basic-public-example"
