@@ -53,7 +53,6 @@ resource "azurerm_lb_nat_rule" "azlb" {
 resource "azurerm_lb_probe" "azlb" {
   count               = length(var.lb_probe)
   name                = element(keys(var.lb_probe), count.index)
-  resource_group_name = data.azurerm_resource_group.azlb.name
   loadbalancer_id     = azurerm_lb.azlb.id
   protocol            = element(var.lb_probe[element(keys(var.lb_probe), count.index)], 0)
   port                = element(var.lb_probe[element(keys(var.lb_probe), count.index)], 1)
