@@ -20,12 +20,32 @@ module "vnet" {
   depends_on = [azurerm_resource_group.rg-lb-test-advanced]
 }
 
+resource "azurerm_public_ip" "pip-lb-test-advanced" {
+  name                = "pip-lb-test-advanced"
+  resource_group_name = azurerm_resource_group.rg-lb-test-advanced.name
+  location            = azurerm_resource_group.rg-lb-test-advanced.location
+  allocation_method   = "Static"
+  ip_version          = "IPv4"
+  sku                 = "Standard"
+  sku_tier            = "Regional"
+
+  tags = {
+    environment = "test"
+    engineer    = "ci/cd"
+  }
+
+  depends_on = [azurerm_resource_group.rg-lb-test-advanced]
+}
+
+
 
 module "advanced_public_lb" {
   source              = "../../"
   resource_group_name = azurerm_resource_group.rg-lb-test-advanced.name
   name                = "lb-advanced-public-test"
-  pip_name            = "pip-lb-advanced-public-test"
+  lb_sku              = "Standard"
+  frontend_name       = "lb-advanced-public-test-ip"
+  pip_name            = azurerm_public_ip.pip-lb-test-advanced.name
 
   remote_port = {
     ssh = ["Tcp", "22"]
