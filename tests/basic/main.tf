@@ -20,12 +20,31 @@ module "vnet" {
   depends_on = [azurerm_resource_group.rg-lb-test-basic]
 }
 
+resource "azurerm_public_ip" "pip-lb-test-basic" {
+  name                = "pip-lb-test-basic"
+  resource_group_name = azurerm_resource_group.rg-lb-test-basic.name
+  location            = azurerm_resource_group.rg-lb-test-basic.location
+  allocation_method   = "Static"
+  ip_version          = "IPv4"
+  sku                 = "Standard"
+  sku_tier            = "Regional"
+
+  tags = {
+    environment = "test"
+    engineer    = "ci/cd"
+  }
+
+  depends_on = [azurerm_resource_group.rg-lb-test-basic]
+}
+
 
 module "basic_public_lb" {
-  source              = "../../"
-  resource_group_name = azurerm_resource_group.rg-lb-test-basic.name
-  name                = "lb-basic-public-test"
-  pip_name            = "pip-lb-basic-public-test"
+  source                = "../../"
+  resource_group_name   = azurerm_resource_group.rg-lb-test-basic.name
+  name                  = "lb-basic-public-test"
+  lb_sku                = "Standard"
+  frontend_name         = "lb-basic-public-test-ip"
+  pip_name              = azurerm_public_ip.pip-lb-test-basic.name
 
   remote_port = {
     ssh = ["Tcp", "22"]
